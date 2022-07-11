@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ChatworkApi.Tester"
+                    xmlns:mvvm="http://prismlibrary.com/">
+
+    <Style x:Key="UserControl.Default.Style" TargetType="{x:Type UserControl}">
+        <Setter Property="mvvm:ViewModelLocator.AutoWireViewModel" Value="True" />
+    </Style>
+
+</ResourceDictionary>

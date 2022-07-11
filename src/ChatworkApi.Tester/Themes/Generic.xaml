@@ -1,0 +1,34 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:ChatworkApi.Tester.Presentation.Converters"
+                    xmlns:local="clr-namespace:ChatworkApi.Tester">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ViewResources.xaml" />
+        <ResourceDictionary Source="Styles.GridSplitter.xaml" />
+        <ResourceDictionary Source="Styles.TextBlock.xaml" />
+        <ResourceDictionary Source="Styles.Window.xaml" />
+        <ResourceDictionary Source="Styles.Image.xaml" />
+        <ResourceDictionary Source="Styles.ListBox.xaml" />
+        <ResourceDictionary Source="Styles.UserControl.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <converters:WorkTaskToLimitConverter x:Key="WorkTaskToLimitConverter" />
+
+    <converters:NameToInitialConverter x:Key="NameToInitialConverter" />
+
+    <converters:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
+
+    <converters:EnumToVisibleConverter x:Key="EnumToVisibleConverter" />
+
+    <converters:DateTimeFormatConverter x:Key="DateTimeFormatConverter" />
+
+    <ControlTemplate x:Key="Error.Outline.Template">
+        <StackPanel Orientation="Vertical">
+            <Border BorderThickness="1" CornerRadius="2">
+                <AdornedElementPlaceholder x:Name="target" />
+            </Border>
+            <TextBlock Foreground="{StaticResource ValidationErrorBrush}" Text="{Binding AdornedElement.(Validation.Errors)[0].ErrorContent, ElementName=target}" />
+        </StackPanel>
+    </ControlTemplate>
+
+</ResourceDictionary>

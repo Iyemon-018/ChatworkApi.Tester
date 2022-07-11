@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="ChatworkApi.Tester.Views.RoomDataView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ChatworkApi.Tester.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:presentation.models="clr-namespace:ChatworkApi.Tester.Domain.Models"
+             xmlns:viewModels="clr-namespace:ChatworkApi.Tester.ViewModels"
+             d:DataContext="{d:DesignInstance {x:Type viewModels:RoomDataViewModel},
+                                              IsDesignTimeCreatable=True}"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="RoomMembersCollection" Source="{Binding Members, Mode=OneWay}">
+            <CollectionViewSource.SortDescriptions>
+                <componentModel:SortDescription PropertyName="Id" />
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Expander Grid.Row="0"
+                  HorizontalAlignment="Stretch"
+                  Header="{Binding Mode=OneWay}"
+                  IsExpanded="True">
+            <Expander.HeaderTemplate>
+                <DataTemplate DataType="{x:Type viewModels:RoomDataViewModel}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="ユーザー一覧" />
+                        <TextBlock Margin="12,0,0,0" Text="{Binding Members.Count, Mode=OneWay, StringFormat=\{0\}人}" />
+                    </StackPanel>
+                </DataTemplate>
+            </Expander.HeaderTemplate>
+            <Border Padding="24,8">
+                <ListBox VerticalAlignment="Stretch"
+                         ItemsSource="{Binding Source={StaticResource RoomMembersCollection}, Mode=OneWay}"
+                         Style="{StaticResource Horizontal.Wrap.ListBox.Style}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type presentation.models:RoomMember}">
+                            <Border>
+                                <Image Source="{Binding AvatarImage, Mode=OneWay}"
+                                       Style="{StaticResource Icon.Size1.Style}"
+                                       ToolTip="{Binding Name, Mode=OneWay}" />
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Border>
+        </Expander>
+        <Border Grid.Row="1"
+                Height="1"
+                HorizontalAlignment="Stretch"
+                Background="{DynamicResource MaterialDesignDivider}"
+                SnapsToDevicePixels="True" />
+        <Expander Grid.Row="2"
+                  HorizontalAlignment="Stretch"
+                  Header="概要"
+                  IsExpanded="True">
+            <Border Padding="24,8">
+                <TextBlock Text="{Binding Description, Mode=OneWay}" TextWrapping="Wrap" />
+            </Border>
+        </Expander>
+    </Grid>
+</UserControl>

@@ -1,0 +1,109 @@
+﻿<Window x:Class="ChatworkApi.Tester.Views.Shell"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:selectors="clr-namespace:ChatworkApi.Tester.Presentation.Selectors"
+        xmlns:viewModels="clr-namespace:ChatworkApi.Tester.ViewModels"
+        xmlns:views="clr-namespace:ChatworkApi.Tester.Views"
+        Title="Shell"
+        Width="960"
+        Height="1024"
+        d:DataContext="{d:DesignInstance {x:Type viewModels:ShellViewModel},
+                                         IsDesignTimeCreatable=True}"
+        SnapsToDevicePixels="True"
+        Style="{StaticResource Windows.Default.Style}"
+        UseLayoutRounding="True"
+        mc:Ignorable="d">
+    <Window.Resources>
+        <selectors:ContentViewSelector x:Key="ContentViewSelector" />
+
+        <Style x:Key="TabRadioButton.Style"
+               BasedOn="{StaticResource MaterialDesignTabRadioButton}"
+               TargetType="{x:Type RadioButton}">
+            <Setter Property="Height" Value="64" />
+            <Setter Property="Padding" Value="4" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0">
+                <ContentPresenter Content="{Binding SelectedMenu, Mode=OneWay}" ContentTemplateSelector="{StaticResource ContentViewSelector}" />
+            </Border>
+            <Border Grid.Row="1"
+                    BorderBrush="LightGray"
+                    BorderThickness="0,1,0,0">
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <RadioButton Margin="4"
+                                 Command="{Binding SelectedMenuCommand, Mode=OneWay}"
+                                 CommandParameter="{Binding Menus[0], Mode=OneWay}"
+                                 IsChecked="True"
+                                 Style="{StaticResource TabRadioButton.Style}">
+                        <StackPanel>
+                            <materialDesign:PackIcon Width="32"
+                                                     Height="32"
+                                                     HorizontalAlignment="Center"
+                                                     Kind="MessageTextOutline" />
+                            <TextBlock Margin="4"
+                                       HorizontalAlignment="Center"
+                                       Text="{Binding Menus[0].Name}" />
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton Margin="4"
+                                 Command="{Binding SelectedMenuCommand, Mode=OneWay}"
+                                 CommandParameter="{Binding Menus[1], Mode=OneWay}"
+                                 Style="{StaticResource TabRadioButton.Style}">
+                        <StackPanel>
+                            <materialDesign:PackIcon Width="32"
+                                                     Height="32"
+                                                     HorizontalAlignment="Center"
+                                                     Kind="CheckboxMarkedOutline" />
+                            <TextBlock Margin="4"
+                                       HorizontalAlignment="Center"
+                                       Text="{Binding Menus[1].Name}" />
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton Margin="4"
+                                 Command="{Binding SelectedMenuCommand, Mode=OneWay}"
+                                 CommandParameter="{Binding Menus[2], Mode=OneWay}"
+                                 Style="{StaticResource TabRadioButton.Style}">
+                        <StackPanel>
+                            <materialDesign:PackIcon Width="32"
+                                                     Height="32"
+                                                     HorizontalAlignment="Center"
+                                                     Kind="Contacts" />
+                            <TextBlock Margin="4"
+                                       HorizontalAlignment="Center"
+                                       Text="{Binding Menus[2].Name}" />
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton Margin="4"
+                                 Command="{Binding SelectedMenuCommand, Mode=OneWay}"
+                                 CommandParameter="{Binding Menus[3], Mode=OneWay}"
+                                 Style="{StaticResource TabRadioButton.Style}">
+                        <StackPanel>
+                            <materialDesign:PackIcon Width="32"
+                                                     Height="32"
+                                                     HorizontalAlignment="Center"
+                                                     Kind="AccountCircle" />
+                            <TextBlock Margin="4"
+                                       HorizontalAlignment="Center"
+                                       Text="{Binding Menus[3].Name}" />
+                        </StackPanel>
+                    </RadioButton>
+                </StackPanel>
+            </Border>
+        </Grid>
+        <materialDesign:DialogHost CloseOnClickAway="False" IsOpen="{Binding InputApiToken, Mode=OneWay}">
+            <materialDesign:DialogHost.DialogContent>
+                <views:ApiTokenRegisterView DataContext="{Binding ApiTokenRegister, Mode=OneWay}" />
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
+    </Grid>
+</Window>

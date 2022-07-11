@@ -1,0 +1,105 @@
+﻿<UserControl x:Class="ChatworkApi.Tester.Views.UserProfileView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:ChatworkApi.Tester.ViewModels"
+             d:DataContext="{d:DesignInstance {x:Type viewModels:UserProfileViewModel},
+                                              IsDesignTimeCreatable=True}"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Style="{StaticResource UserControl.Default.Style}"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="ItemName.TextBlock.Style" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="#ff7f7f7f" />
+        </Style>
+        <Style x:Key="ItemValue.TextBlock.Style" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}" />
+        </Style>
+        <Style x:Key="ItemName.Border.Style" TargetType="{x:Type Border}">
+            <Setter Property="Padding" Value="0,16,16,16" />
+        </Style>
+        <Style x:Key="ItemValue.Border.Style" TargetType="{x:Type Border}">
+            <Setter Property="Padding" Value="16,0,16,16" />
+        </Style>
+    </UserControl.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand, Mode=OneTime}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Border>
+            <StackPanel Orientation="Vertical">
+                <Border>
+                    <TextBlock FontSize="24" Text="{Binding Profile.Name, Mode=OneWay}" />
+                </Border>
+                <Border Margin="0,16,0,0">
+                    <TextBlock FontSize="24" Text="{Binding Profile.OrganizationName, Mode=OneWay}" />
+                </Border>
+                <Border Style="{DynamicResource ItemName.Border.Style}">
+                    <TextBlock Style="{DynamicResource ItemName.TextBlock.Style}" Text="所属" />
+                </Border>
+                <Border Style="{DynamicResource ItemValue.Border.Style}">
+                    <TextBlock Style="{DynamicResource ItemValue.TextBlock.Style}" Text="{Binding Profile.Department, Mode=OneWay}" />
+                </Border>
+                <Border Style="{DynamicResource ItemName.Border.Style}">
+                    <TextBlock Style="{DynamicResource ItemName.TextBlock.Style}" Text="役職" />
+                </Border>
+                <Border Style="{DynamicResource ItemValue.Border.Style}">
+                    <TextBlock Style="{DynamicResource ItemValue.TextBlock.Style}" Text="{Binding Profile.Title, Mode=OneWay}" />
+                </Border>
+                <Border Style="{DynamicResource ItemName.Border.Style}">
+                    <TextBlock Style="{DynamicResource ItemName.TextBlock.Style}" Text="URL" />
+                </Border>
+                <Border Style="{DynamicResource ItemValue.Border.Style}">
+                    <TextBlock Style="{DynamicResource ItemValue.TextBlock.Style}" Text="{Binding Profile.Url, Mode=OneWay}" />
+                </Border>
+                <Border Style="{DynamicResource ItemName.Border.Style}">
+                    <TextBlock Style="{DynamicResource ItemName.TextBlock.Style}" Text="メールアドレス" />
+                </Border>
+                <Border Style="{DynamicResource ItemValue.Border.Style}">
+                    <TextBlock Style="{DynamicResource ItemValue.TextBlock.Style}" Text="{Binding Profile.Mail, Mode=OneWay}" />
+                </Border>
+                <Border Style="{DynamicResource ItemName.Border.Style}">
+                    <TextBlock Style="{DynamicResource ItemName.TextBlock.Style}" Text="電話番号(勤務先)" />
+                </Border>
+                <Border Style="{DynamicResource ItemValue.Border.Style}">
+                    <TextBlock Style="{DynamicResource ItemValue.TextBlock.Style}" Text="{Binding Profile.OrganizationTelephoneNumber, Mode=OneWay}" />
+                </Border>
+                <Border Style="{DynamicResource ItemName.Border.Style}">
+                    <TextBlock Style="{DynamicResource ItemName.TextBlock.Style}" Text="電話番号(内線)" />
+                </Border>
+                <Border Style="{DynamicResource ItemValue.Border.Style}">
+                    <TextBlock Style="{DynamicResource ItemValue.TextBlock.Style}" Text="{Binding Profile.ExtensionTelephoneNumber, Mode=OneWay}" />
+                </Border>
+                <Border Style="{DynamicResource ItemName.Border.Style}">
+                    <TextBlock Style="{DynamicResource ItemName.TextBlock.Style}" Text="電話番号(携帯)" />
+                </Border>
+                <Border Style="{DynamicResource ItemValue.Border.Style}">
+                    <TextBlock Style="{DynamicResource ItemValue.TextBlock.Style}" Text="{Binding Profile.MobileTelephoneNumber, Mode=OneWay}" />
+                </Border>
+                <Border Style="{DynamicResource ItemName.Border.Style}">
+                    <TextBlock Style="{DynamicResource ItemName.TextBlock.Style}" Text="Facebook" />
+                </Border>
+                <Border Style="{DynamicResource ItemValue.Border.Style}">
+                    <TextBlock Style="{DynamicResource ItemValue.TextBlock.Style}" Text="{Binding Profile.FacebookAccount, Mode=OneWay}" />
+                </Border>
+                <Border Style="{DynamicResource ItemName.Border.Style}">
+                    <TextBlock Style="{DynamicResource ItemName.TextBlock.Style}" Text="Twitter" />
+                </Border>
+                <Border Style="{DynamicResource ItemValue.Border.Style}">
+                    <TextBlock Style="{DynamicResource ItemValue.TextBlock.Style}" Text="{Binding Profile.TwitterAccount, Mode=OneWay}" />
+                </Border>
+                <Border Style="{DynamicResource ItemName.Border.Style}">
+                    <TextBlock Style="{DynamicResource ItemName.TextBlock.Style}" Text="Skype" />
+                </Border>
+                <Border Style="{DynamicResource ItemValue.Border.Style}">
+                    <TextBlock Style="{DynamicResource ItemValue.TextBlock.Style}" Text="{Binding Profile.SkypeAccount, Mode=OneWay}" />
+                </Border>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>
